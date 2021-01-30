@@ -4,19 +4,18 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Button1({ text, onPress }) {
     return (
-        <TouchableOpacity onPress={onPress}>
-            <View style={styles.boton}>
+        <View style={styles.boton}>
+            <TouchableOpacity onPress={onPress}>
                 <Text style={styles.botonTexto}>{ text }</Text>
-            </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     boton: {
-        borderRadius: 3,
-        width: 80,
-        height: 40,
+        marginHorizontal: 10,
+        borderRadius: 10,
         justifyContent: 'center',
         backgroundColor: '#F5F5F5',
         shadowColor: "#000",
@@ -27,9 +26,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 2.22,
         elevation: 3,
+        padding: 10,
     },
     botonTexto: {
-        padding: 10,
         textAlign: 'center',
+        fontSize: 18,
     }
 });

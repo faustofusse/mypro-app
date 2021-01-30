@@ -1,22 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const TOKEN_KEY = "auth-token-key";
+export const INTRO_KEY = "intro-key";
 
-export const getToken = () => {
-  return new Promise((resolve, reject) => {
-    AsyncStorage.getItem(TOKEN_KEY)
-      .then(res => {
-        resolve(JSON.parse(res));
-      })
-      .catch(err => reject(err));
-  });
-};
+export const doneIntro = () => AsyncStorage.setItem(INTRO_KEY, 'true');
 
-export const updateToken = user => {
-  console.log("Update user (Async Storage)");
-  return AsyncStorage.setItem(TOKEN_KEY, JSON.stringify(user));
-};
+export const getIntro = () => AsyncStorage.getItem(INTRO_KEY);
 
-export const deleteToken = user => {
-  AsyncStorage.removeItem(TOKEN_KEY);
-};
+export const getToken = () => AsyncStorage.getItem(TOKEN_KEY);
+
+export const updateToken = (token) => AsyncStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+
+export const deleteToken = () =>  AsyncStorage.removeItem(TOKEN_KEY);
