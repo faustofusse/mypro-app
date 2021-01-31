@@ -19,7 +19,7 @@ export const call = (method, url, param, config, actionType, callback = null) =>
             return response.data;
         })
         .finally(() => dispatch(stopLoading()))
-        .catch(err => {console.log('Error:', err); dispatch(stopLoading())});
+        .catch(err => {alert(err); dispatch(stopLoading())});
     };
 }
 

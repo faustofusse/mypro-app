@@ -1,16 +1,29 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { StyleSheet, Image, View, TextInput, ScrollView } from 'react-native';
 import SwitchSelector from "react-native-switch-selector";
+import { useDispatch } from 'react-redux';
 import AuthButton from '../components/Buttons/AuthButton';
+import { register } from '../utils/user';
 
 const Register = (props) => {
-    const [user, setUser] = useState({ gender: 'male', userType: 'client' });
+    const { navigate } = useNavigation();
+
+    const dispatch = useDispatch();
+
+    const [user, setUser] = useState({ gender: 'male', userType: 'client', birthdate: Date.now() });
 
     const handleChangeText = (name, value) => setUser({ ...user, [name]: value });
 
-    const register = async () => { console.log('crear usuario', user) };
+    const registerUser = async () => { 
+      console.log('crear usuario', user); 
+      dispatch(register(user, (res) => {
+        alert(res.message);
+        if (res.success) navigate('Login');
+      })); 
+    };
 
-    const input = (placeholder, valueName, type, keyboard='default') => ( <TextInput style={styles.input} keyboardType={keyboard} textContentType={type} placeholder={placeholder} autoCapitalize='none' onChangeText={(value) => handleChangeText(valueName, value)} /> );
+    const input = (placeholder, valueName, type, keyboard='default', secure=false) => ( <TextInput style={styles.input} secureTextEntry={secure} keyboardType={keyboard} textContentType={type} placeholder={placeholder} autoCapitalize='none' onChangeText={(value) => handleChangeText(valueName, value)} /> );
 
     return (
         <ScrollView > 
@@ -26,9 +39,9 @@ const Register = (props) => {
                 {input('Domicilio', 'address', 'fullStreetAddress')}
                 <SwitchSelector style={styles.selector} initial={0} onPress={value => handleChangeText('userType', value)}
                     options={[{label: 'Cliente', value: 'client', activeColor:'#ffb74d'}, {label: 'Profesional', activeColor:'#ffb74d', value: 'professional'}]} /> 
-                {input('Contraseña', 'password', 'password')}
-                {input('Repetir contraseña', 'repeatPassword', 'password')}
-                <AuthButton onPress={register} iconName="login" text='Crear cuenta' />
+                {input('Contraseña', 'password', 'oneTimeCode', 'default', true)}
+                {input('Repetir contraseña', 'repeatPassword', 'password', 'default', true)}
+                <AuthButton onPress={registerUser} iconName="login" text='Crear cuenta' />
             </View>
         </ScrollView>
     )

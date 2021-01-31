@@ -9,6 +9,6 @@ export const getIntro = () => AsyncStorage.getItem(INTRO_KEY);
 
 export const getToken = () => AsyncStorage.getItem(TOKEN_KEY);
 
-export const updateToken = (token) => AsyncStorage.setItem(TOKEN_KEY, JSON.stringify(token));
+export const updateToken = (token) => AsyncStorage.setItem(TOKEN_KEY, token);
 
 export const deleteToken = () =>  AsyncStorage.removeItem(TOKEN_KEY);
