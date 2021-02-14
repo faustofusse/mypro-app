@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Image, View, TextInput } from 'react-native';
 import { useDispatch } from 'react-redux';
-import AuthButton from '../components/Buttons/AuthButton';
-import { login } from '../utils/user';
+import AuthButton from '../../components/buttons/AuthButton';
+import { login } from '../../utils/user';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.logo} source={require('../assets/images/logo.png')} resizeMode='contain' />
+      <Image style={styles.logo} source={require('../../assets/images/logo.png')} resizeMode='contain' />
       {input('Correo electrónico', 'email', 'emailAddress', 'email-address')}
       {input('Contraseña', 'password', 'password', 'default', true)}
       <View style={{width:'60%'}}>

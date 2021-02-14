@@ -1,5 +1,5 @@
 // export const API_URL = 'https://dmeserver.herokuapp.com/api';
-export const API_URL = 'http://localhost:8080/api';
+export const API_URL = 'http://192.168.0.42:8080/api';
 
 export const METHOD_GET = 'METHOD_GET';
 export const METHOD_POST = 'METHOD_POST';

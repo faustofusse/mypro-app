@@ -38,7 +38,7 @@ export default function Loading() {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={require('../assets/images/logo.png')} resizeMode='contain'/>
+            <Image style={styles.logo} source={require('../../assets/images/logo.png')} resizeMode='contain'/>
             <StatusBar />
             <Progress step={index} steps={10} height={10} />
         </View>

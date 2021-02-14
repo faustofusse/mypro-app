@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Image, View, TextInput, ScrollView } from 'react-native';
 import SwitchSelector from "react-native-switch-selector";
 import { useDispatch } from 'react-redux';
-import AuthButton from '../components/Buttons/AuthButton';
-import { register } from '../utils/user';
+import AuthButton from '../../components/buttons/AuthButton';
+import { register } from '../../utils/user';
 
 const Register = (props) => {
     const { navigate } = useNavigation();
@@ -28,7 +28,7 @@ const Register = (props) => {
     return (
         <ScrollView > 
             <View style={styles.container}>
-                <Image style={styles.logo} source={require('../assets/images/logo.png')} resizeMode='contain'/>
+                <Image style={styles.logo} source={require('../../assets/images/logo.png')} resizeMode='contain'/>
                 {input('Nombre', 'firstName', 'name')}
                 {input('Apellido', 'lastName', 'familyName')}
                 <SwitchSelector style={styles.selector} initial={0} onPress={value => handleChangeText('gender', value)}

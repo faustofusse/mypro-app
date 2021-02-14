@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, Image, View } from 'react-native';
-import IntroButton from '../components/Buttons/IntroButton';
-import { doneIntro } from '../utils/storage';
+import IntroButton from '../../components/buttons/IntroButton';
+import { doneIntro } from '../../utils/storage';
 
 const Introduction = (props) => {
     const navigation = useNavigation();
@@ -23,7 +23,7 @@ const Introduction = (props) => {
 
     return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={require('../assets/images/logo.png')} resizeMode="contain" />
+            <Image style={styles.logo} source={require('../../assets/images/logo.png')} resizeMode="contain" />
             <Text style={styles.titulo}>{titles[screen]}</Text>
             <Text style={styles.texto}>{texts[screen]}</Text>
             <View style={styles.botones}>

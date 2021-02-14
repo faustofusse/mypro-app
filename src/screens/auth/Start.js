@@ -1,13 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Image, Text, View } from 'react-native';
-import AuthButton from '../components/Buttons/AuthButton';
+import AuthButton from '../../components/buttons/AuthButton';
 
 const Start = (props) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={require('../assets/images/logo.png')} resizeMode='contain'/>
+            <Image style={styles.logo} source={require('../../assets/images/logo.png')} resizeMode='contain'/>
             <Text style={styles.text}>Para comenzar, inicia sesion o crea una cuenta.</Text>
             <View style={{width:'60%'}}>
                 <AuthButton iconName="login" text='Iniciar Sesión' onPress={ ()=> navigation.navigate('Login')} />
