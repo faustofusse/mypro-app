@@ -9,8 +9,8 @@ const Profile = (props) => {
     const token = useSelector(state => state.token); 
     const user = useSelector(state => state.user); 
     return (
-        <View>
-            <Text>Profile</Text>
+        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+            <Text style={{fontSize: 40}}>Profile</Text>
             <IntroButton text='LOGOUT' onPress={() => dispatch(logout(token))} />
         </View>
     )

@@ -7,8 +7,8 @@ const Cart = (props) => {
     const token = useSelector(state => state.token); 
     const user = useSelector(state => state.user); 
     return (
-        <View>
-            <Text>Cart</Text>
+        <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+            <Text style={{fontSize: 40}}>Cart</Text>
         </View>
     )
 }
