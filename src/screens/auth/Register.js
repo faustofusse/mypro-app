@@ -5,25 +5,24 @@ import SwitchSelector from "react-native-switch-selector";
 import { useDispatch } from 'react-redux';
 import AuthButton from '../../components/buttons/AuthButton';
 import { register } from '../../utils/user';
+import DatePicker from '../../components/auth/DatePicker';
 
 const Register = (props) => {
     const { navigate } = useNavigation();
-
     const dispatch = useDispatch();
-
-    const [user, setUser] = useState({ gender: 'male', userType: 'client', birthdate: Date.now() });
-
+    const [user, setUser] = useState({ gender: 'male', userType: 'client' });
+    
     const handleChangeText = (name, value) => setUser({ ...user, [name]: value });
 
     const registerUser = async () => { 
-      console.log('crear usuario', user); 
+      console.log('Crear usuario', user); 
       dispatch(register(user, (res) => {
         alert(res.message);
         if (res.success) navigate('Login');
       })); 
     };
 
-    const input = (placeholder, valueName, type, keyboard='default', secure=false) => ( <TextInput style={styles.input} secureTextEntry={secure} keyboardType={keyboard} textContentType={type} placeholder={placeholder} autoCapitalize='none' onChangeText={(value) => handleChangeText(valueName, value)} /> );
+    const input = (placeholder, valueName, type, keyboard='default', secure=false) => ( <TextInput style={styles.input} secureTextEntry={secure} keyboardType={keyboard} textContentType={type} placeholder={placeholder} autoCapitalize='none' onChangeText={(value) => handleChangeText(valueName, value)} placeholderTextColor='#bdbdbd' /> );
 
     return (
         <ScrollView > 
@@ -37,6 +36,7 @@ const Register = (props) => {
                 {input('DNI', 'dni', 'none', 'number-pad')}
                 {input('Teléfono', 'phone', 'telephoneNumber', 'phone-pad')}
                 {input('Domicilio', 'address', 'fullStreetAddress')}
+                <DatePicker onChange={d => setUser({ ...user, birthdate: Date.parse(d) })}/>
                 <SwitchSelector style={styles.selector} initial={0} onPress={value => handleChangeText('userType', value)}
                     options={[{label: 'Cliente', value: 'client', activeColor:'#ffb74d'}, {label: 'Profesional', activeColor:'#ffb74d', value: 'professional'}]} /> 
                 {input('Contraseña', 'password', 'oneTimeCode', 'default', true)}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      padding: 20
+      padding: '12%'
     },
     logo: {
         width:'70%',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
       marginBottom: 15
     },
     input: {
-      width: '80%',
+      width: '100%',
       backgroundColor: '#F5F5F5',
       borderRadius: 10,
       padding: 15,
