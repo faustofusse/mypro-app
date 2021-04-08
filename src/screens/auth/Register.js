@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Image, View, TextInput, ScrollView } from 'react-native';
-import SwitchSelector from "react-native-switch-selector";
 import { useDispatch } from 'react-redux';
-import AuthButton from '../../components/buttons/AuthButton';
 import { register } from '../../utils/user';
+import SwitchSelector from "react-native-switch-selector";
+import AuthButton from '../../components/buttons/AuthButton';
 import DatePicker from '../../components/auth/DatePicker';
 
 const Register = (props) => {

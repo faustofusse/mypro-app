@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import IconButton from '../buttons/IconButton';
@@ -54,8 +54,8 @@ const styles = StyleSheet.create({
     searchContainer: {
         width: '100%',
         backgroundColor: '#e5e5e5',
-        borderRadius: 20,
-        padding: 5,
+        borderRadius: 40,
+        padding: 10,
         flexDirection: 'row',
         justifyContent: 'center',
     },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems: 'center',
         backgroundColor: '#f3f3f3',
-        borderRadius: 20,
+        borderRadius: 24,
         paddingLeft: 5,
     },
     input: {

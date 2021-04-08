@@ -7,10 +7,10 @@ import { Provider } from 'react-redux';
 import { setToken } from './redux/actions';
 import { getUser } from './utils/user';
 import { StatusBar } from 'react-native';
-import store from './redux/store';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import HomeNavigator from './navigation/HomeNavigator';
 import AuthNavigator from './navigation/AuthNavigator';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import store from './redux/store';
 
 export default function App(props) {
     const [logged, setLogged] = useState(false);
@@ -26,7 +26,8 @@ export default function App(props) {
                     store.dispatch(setToken(token));
                     store.dispatch(getUser(token));
                 }
-                setLoading(false);
+                setInterval(() => setLoading(false), 1000);
+                // setLoading(false);
             });
         });
     }, []);

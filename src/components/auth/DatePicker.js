@@ -15,8 +15,8 @@ export default function DatePicker({ onChange }) {
     };
 
     if (date) {
-        var day = date.getUTCDay() < 10 ? '0'.concat(date.getUTCDay()) : date.getUTCDay();
-        var month = date.getUTCMonth() < 10 ? '0'.concat(date.getUTCMonth()) : date.getUTCMonth();
+        var day = date.getUTCDate() < 10 ? '0'.concat(date.getUTCDate()) : date.getUTCDate();
+        var month = date.getUTCMonth() < 9 ? '0'.concat(date.getUTCMonth() + 1) : date.getUTCMonth() + 1;
         var year = date.getUTCFullYear();
     }
 

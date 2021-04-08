@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import IntroButton from '../../components/buttons/IntroButton';
 import { logout } from '../../utils/user';
+import IntroButton from '../../components/buttons/IntroButton';
 
 const Profile = (props) => {
     const dispatch = useDispatch();
@@ -15,5 +15,9 @@ const Profile = (props) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+
+});
 
 export default Profile;

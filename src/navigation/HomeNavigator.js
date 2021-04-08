@@ -1,10 +1,11 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Profile, Explore, Chats, Cart } from '../screens/home'; 
 import Header from '../components/navigation/Header';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 const iconNames = { 'Home': 'home', 'Explore': 'explore', 'Chats': 'chat', 'Cart': 'shopping-cart', 'Profile': 'account-circle' };
 
 const Stack = createStackNavigator();
@@ -22,18 +23,7 @@ const TabNavigator = props => (
             inactiveTintColor: '#FFB500',
             showLabel: false,
             keyboardHidesTabBar: true,
-            style: { 
-                position: 'absolute',
-                height: '10%',
-                borderTopStartRadius: 30, 
-                borderTopEndRadius: 30, 
-                backgroundColor: '#fff',
-                shadowColor: "#000",
-                shadowOffset: { width: 0, height: 5 },
-                shadowOpacity: 0.36,
-                shadowRadius: 6.68,
-                elevation: 11,
-            } 
+            style: styles.tabBar 
         }} > 
 
         <Tab.Screen name="Home" component={Home} />
@@ -50,5 +40,20 @@ const HomeNavigator = props => (
             <Stack.Screen name='Home' component={TabNavigator} />
         </Stack.Navigator>
 );
+
+const styles = StyleSheet.create({
+    tabBar: { 
+        position: 'absolute',
+        height: Platform.OS === 'ios' ? '15%' : '12%',
+        borderTopStartRadius: 30, 
+        borderTopEndRadius: 30, 
+        backgroundColor: '#fff',
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+        elevation: 11,
+    }
+});
 
 export default HomeNavigator;
