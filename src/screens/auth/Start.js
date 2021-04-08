@@ -1,18 +1,28 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, Image, Text, View } from 'react-native';
-import AuthButton from '../../components/buttons/AuthButton';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { RED, BLUE, BLACK, GRAY } from '../../constants/colors';
+import { useNavigation } from '@react-navigation/core';
+import AuthButton from '../../components/buttons/Auth';
+import Logo from '../../assets/images/logo.svg';
+
+import Mail from '../../assets/images/mail.svg';
+const mail = () => <Mail />;
+import Google from '../../assets/images/google.svg';
+const google = () => <Google />;
+import Facebook from '../../assets/images/facebook.svg';
+const facebook = () => <Facebook />;
 
 const Start = (props) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            <Image style={styles.logo} source={require('../../assets/images/logo.png')} resizeMode='contain'/>
-            <Text style={styles.text}>Para comenzar, inicia sesion o crea una cuenta.</Text>
-            <View style={{width:'60%'}}>
-                <AuthButton iconName="login" text='Iniciar Sesión' onPress={ ()=> navigation.navigate('Login')} />
-                <AuthButton iconName="edit" text='Crear una cuenta' onPress={ ()=> navigation.navigate('Register')} />
-            </View>
+            <StatusBar backgroundColor={GRAY} />
+            <Logo style={styles.logo} />
+            <Text style={styles.slogan}>SOLUCIONES A TUS PROBLEMAS</Text>
+            <Text style={styles.text}>Conectarse con</Text>
+            <AuthButton icon={mail} color={RED} text='Correo Electronico' onPress={()=>navigation.navigate('Mail')}/>
+            <AuthButton icon={facebook} color={BLUE} text='Facebook' onPress={()=>console.log('boton')}/>
+            <AuthButton icon={google} color={BLACK} text='Google' onPress={()=>console.log('boton')}/>
         </View>
     )
 }
@@ -20,20 +30,24 @@ const Start = (props) => {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: GRAY,
       justifyContent: 'center',
       alignItems: 'center',
       color: '#FF0000'
     },
     logo: {
-      width:'70%',
-      height:100,
-      marginBottom: 15
+      maxWidth: '65%',
+      marginBottom: 20
     },
     text: {
-      fontSize: 23,
-      width: '70%',
-      marginBottom: 15,
+      fontFamily: 'MavenProBold',
+      fontSize: 20,
+      marginBottom: 23
+    },
+    slogan: {
+      fontFamily: 'MavenProMedium',
+      fontSize: 14,
+      marginBottom: 150
     }
   });
 

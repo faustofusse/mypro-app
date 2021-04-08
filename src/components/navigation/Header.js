@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import IconButton from '../buttons/IconButton';
+import IconButton from '../buttons/Icon';
 
 const Header = (props) => {
     return (

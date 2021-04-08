@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../utils/user';
-import IntroButton from '../../components/buttons/IntroButton';
+import Button from '../../components/buttons/Auth';
 
 const Profile = (props) => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const Profile = (props) => {
     return (
         <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
             <Text style={{fontSize: 40}}>Profile</Text>
-            <IntroButton text='LOGOUT' onPress={() => dispatch(logout(token))} />
+            <Button text='LOGOUT' onPress={() => dispatch(logout(token))} />
         </View>
     )
 }
