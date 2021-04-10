@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { BLACK, GRAY } from '../../constants/colors'
 
-const Input = ({label, placeholder, onChange, secure=false, keyboard='default', type, style}) => {
+const Input = ({label, placeholder, onChange, secure=false, keyboard='default', type, style, textColor=BLACK}) => {
     return (
         <View style={style}>
-            <Text style={styles.text}>{label}</Text>
-            <TextInput style={styles.input} 
+            <Text style={[styles.text, {color: textColor}]}>{label}</Text>
+            <TextInput style={[styles.input, {color: textColor}]} 
                 secureTextEntry={secure} 
                 keyboardType={keyboard} 
                 placeholderTextColor={'#B4B4B4'}
@@ -23,14 +23,13 @@ const styles = StyleSheet.create({
     input: {
         width: '100%',
         borderBottomColor: '#B4B4B4',
-        color: BLACK,
         borderBottomWidth: 1,
         paddingVertical: 7,
         fontSize: 18,
+        fontFamily: 'MavenProRegular'
     },
     text: {
         fontFamily: 'MavenProBold',
-        color: BLACK,
         fontSize: 20,
         marginBottom: 5
     }

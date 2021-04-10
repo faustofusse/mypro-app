@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/core';
-import { View, Text, StyleSheet, StatusBar, SafeAreaView, TouchableOpacity, SafeAreaViewComponent, SafeAreaViewBase } from 'react-native';
-import IconButton from '../../components/buttons/Icon';
-import { BLACK, GRAY, RED, WHITE } from '../../constants/colors';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
+import { Button, IconButton } from '../../../components/buttons';
+import { BLACK, GRAY, RED } from '../../../constants/colors';
 import { useDispatch } from 'react-redux';
-import { login } from '../../utils/user';
-import Input from '../../components/auth/Input';
-import Button from '../../components/buttons/Auth';
+import { login } from '../../../utils/user';
+import { Input } from '../../../components/auth';
 
-const MailLogin = () => {
-    const navigation = useNavigation();
+const Mail = ({ navigation }) => {
     const dispatch = useDispatch();
     const [user, setUser] = useState({ email: "", password: "" });
   
     const handleChangeText = (name, value) => setUser({ ...user, [name]: value });
 
     const logIn = async () => dispatch(login(user.email, user.password));
-    const register = async () => navigation.navigate('Register');
+    const register = async () => navigation.navigate('RegisterOptions');
     const forgot = async () => alert('forgot password');
   
     const touchableText = (text, onPress, size, color) => <TouchableOpacity onPress={onPress}><Text style={{fontSize: size, color}}>{text}</Text></TouchableOpacity>
@@ -24,7 +21,6 @@ const MailLogin = () => {
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: GRAY}}>
             <View style={styles.container}>
-                <StatusBar backgroundColor={GRAY} />
                 <IconButton iconName='arrow-back-ios' onPress={navigation.goBack} color={BLACK} style={styles.icon}/>
                 <View style={styles.inputs}>
                     <Input style={styles.input} onChange={v => handleChangeText('email', v)} placeholder='pedrogonzales@gmail.com' label='Ingresa tu mail' type='emailAddress' keyboard='email-address'/>
@@ -37,7 +33,7 @@ const MailLogin = () => {
                 </View>
                 <Button text='Continuar' onPress={() => alert('continuar')} color={RED} />
             </View>
-            </SafeAreaView>
+        </SafeAreaView>
     )
 }
 
@@ -72,4 +68,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MailLogin;
+export default Mail;

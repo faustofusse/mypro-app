@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { RED, BLUE, BLACK, GRAY } from '../../constants/colors';
 import { useNavigation } from '@react-navigation/core';
-import AuthButton from '../../components/buttons/Auth';
+import { Button } from '../../components/buttons';
 import Logo from '../../assets/images/logo.svg';
 
 import Mail from '../../assets/images/mail.svg';
@@ -16,13 +16,13 @@ const Start = (props) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={GRAY} />
+            <StatusBar animated backgroundColor={GRAY} />
             <Logo style={styles.logo} />
             <Text style={styles.slogan}>SOLUCIONES A TUS PROBLEMAS</Text>
-            <Text style={styles.text}>Conectarse con</Text>
-            <AuthButton icon={mail} color={RED} text='Correo Electronico' onPress={()=>navigation.navigate('Mail')}/>
-            <AuthButton icon={facebook} color={BLUE} text='Facebook' onPress={()=>console.log('boton')}/>
-            <AuthButton icon={google} color={BLACK} text='Google' onPress={()=>console.log('boton')}/>
+            <Text style={styles.text}>Ingresar con</Text>
+            <Button icon={mail} color={RED} text='Correo Electronico' onPress={()=>navigation.navigate('Mail')}/>
+            <Button icon={facebook} color={BLUE} text='Facebook' onPress={()=>console.log('boton')}/>
+            <Button icon={google} color={BLACK} text='Google' onPress={()=>console.log('boton')}/>
         </View>
     )
 }

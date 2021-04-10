@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const PADDING = 12;
 
-export default function Auth({ icon=null, color='#000', onPress, width='80%', text='Boton'}) {
+export default function Button({ icon=null, color='#000', onPress, width='80%', text='Boton'}) {
     return (
         <View style={[styles.container, { backgroundColor: color, width }]}>
             <TouchableOpacity onPress={onPress}>
@@ -19,7 +18,6 @@ const styles = StyleSheet.create({
     container: {
         marginVertical: 10,
         borderRadius: 18,
-
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 0 },
         shadowOpacity: 0.29,

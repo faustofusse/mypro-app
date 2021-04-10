@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../utils/user';
-import Button from '../../components/buttons/Auth';
+import { Button } from '../../components/buttons';
 
 const Profile = (props) => {
     const dispatch = useDispatch();

@@ -1,17 +1,23 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { MailLogin, Start } from '../screens/auth';
-// import { Login, Register, Introduction, Start } from '../screens/auth';
+import { Basic, Extra, MailLogin, Options, Professional, Start } from '../screens/auth';
+import { TransitionPresets } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
+const options = {
+    headerShown: false,
+    ...TransitionPresets.SlideFromRightIOS
+};
+
 const AuthNavigator = () => (
     <Stack.Navigator initialRouteName={'Start'}> 
-        <Stack.Screen name="Start" component={Start} options={{headerShown: false}}/>
-        <Stack.Screen name="Mail" component={MailLogin} options={{headerShown: false}}/>
-        {/* <Stack.Screen name="Login" component={Login} options={{headerShown: true}}/> */}
-        {/* <Stack.Screen name="Register" component={Register} options={{headerShown: true}}/> */}
-        {/* <Stack.Screen name="Introduction" component={Introduction} options={{headerShown: false}}/> */}
+        <Stack.Screen options={options} name="Start" component={Start}/>
+        <Stack.Screen options={options} name="Mail" component={MailLogin}/>
+        <Stack.Screen options={options} name="RegisterOptions" component={Options}/>
+        <Stack.Screen options={options} name="Basic" component={Basic}/>
+        <Stack.Screen options={options} name="Extra" component={Extra}/>
+        <Stack.Screen options={options} name="Professional" component={Professional}/>
     </Stack.Navigator>
 );
 

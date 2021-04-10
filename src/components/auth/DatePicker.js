@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { DARK_GRAY, RED } from '../../constants/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-export default function DatePicker({ onChange }) {
+export default function DatePicker({ onChange, textColor, style, label=null }) {
     const [date, setDate] = useState(null);
     const [showDatePicker, setShowDatePicker] = useState(false);
 
@@ -21,10 +21,12 @@ export default function DatePicker({ onChange }) {
     }
 
     return (
-        <View style={{width:'100%'}}>
-            <TouchableOpacity onPress={() => setShowDatePicker(true)} style={styles.container}>
-                <Text style={styles.text}>Nacimiento: <Text style={{color: date ? 'black' : '#bdbdbd'}}>{date ? `${day}/${month}/${year}` : 'DD/MM/AAAA'}</Text></Text>
-                <Icon name={'today'} color={'#ffb74d'} size={30} />
+        <View style={style}>
+            { label ? ( <Text style={[styles.label, {color: textColor}]}>{label}</Text> ) : null}
+
+            <TouchableOpacity onPress={() => setShowDatePicker(true)} style={[styles.container]}>
+                <Text style={[styles.text, {color: date ? textColor : DARK_GRAY}]}>{date ? `${day}/${month}/${year}` : 'DD/MM/AAAA'}</Text>
+                <Icon name={'today'} color={RED} size={30} />
             </TouchableOpacity>
 
             <DateTimePickerModal
@@ -45,13 +47,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         width: '100%',
-        backgroundColor: '#F5F5F5',
-        borderRadius: 10,
-        padding: 15,
-        marginBottom: 15
+        // backgroundColor: '#F5F5F5',
+        paddingVertical: 15,
+        // marginBottom: 15,
+        borderBottomColor: DARK_GRAY,
+        borderBottomWidth: 1
+    },
+    label: {
+        fontFamily: 'MavenProBold',
+        fontSize: 20,
+        marginBottom: 5
     },
     text: {
         fontSize: 18,
-        color: '#bdbdbd'
+        fontFamily: 'MavenProRegular'
     }
 });
