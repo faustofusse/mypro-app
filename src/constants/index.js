@@ -9,3 +9,15 @@ export const METHOD_DELETE = 'METHOD_DELETE';
 export const NOTIFICATION_INFO = 'NOTIFICATION_INFO';
 export const NOTIFICATION_ERROR = 'NOTIFICATION_ERROR';
 export const NOTIFICATION_SUCCESS = 'NOTIFICATION_SUCCESS';
+
+export const USER_MODELS = {
+    all: ['email', 'password', 'repeatPassword', 'name', 'phone', 'address', 'phone', 'business', 'professional'],
+    professional: {
+        particular: ['dni', 'lastName', 'gender', 'birthdate', 'enrollment', 'workZone', 'workArea', 'experience'],
+        business: ['cuit', 'enrollment', 'workZone', 'workArea', 'employees'],
+    },
+    client: {
+        particular: ['dni', 'lastName', 'gender', 'birthdate'],
+        business: ['cuit'],
+    }
+}
