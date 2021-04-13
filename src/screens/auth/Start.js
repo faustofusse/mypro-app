@@ -1,28 +1,36 @@
 import React from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { RED, BLUE, BLACK, GRAY } from '../../constants/colors';
 import { useNavigation } from '@react-navigation/core';
 import { Button } from '../../components/buttons';
+import Facebook from '../../assets/images/facebook.svg';
+import Google from '../../assets/images/google.svg';
+import Mail from '../../assets/images/mail.svg';
 import Logo from '../../assets/images/logo.svg';
 
-import Mail from '../../assets/images/mail.svg';
-const mail = () => <Mail />;
-import Google from '../../assets/images/google.svg';
-const google = () => <Google />;
-import Facebook from '../../assets/images/facebook.svg';
-const facebook = () => <Facebook />;
 
 const Start = (props) => {
     const navigation = useNavigation();
+
+    const google = async () => {
+      try {
+        await GoogleSignin.hasPlayServices();
+        const userInfo = await GoogleSignin.signIn();
+        alert(userInfo)
+        console.log(userInfo)
+      } catch (error) { JSON.stringify(alert(error)) };
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar animated backgroundColor={GRAY} />
             <Logo style={styles.logo} />
             <Text style={styles.slogan}>SOLUCIONES A TUS PROBLEMAS</Text>
             <Text style={styles.text}>Ingresar con</Text>
-            <Button icon={mail} color={RED} text='Correo Electronico' onPress={()=>navigation.navigate('Mail')}/>
-            <Button icon={facebook} color={BLUE} text='Facebook' onPress={()=>console.log('boton')}/>
-            <Button icon={google} color={BLACK} text='Google' onPress={()=>console.log('boton')}/>
+            <Button icon={() => <Mail />} color={RED} text='Correo Electronico' onPress={()=>navigation.navigate('Mail')}/>
+            <Button icon={() => <Facebook />} color={BLUE} text='Facebook' onPress={()=>console.log('boton')}/>
+            <Button icon={() => <Google />} color={BLACK} text='Google' onPress={google}/>
         </View>
     )
 }

@@ -11,7 +11,7 @@ export const NOTIFICATION_ERROR = 'NOTIFICATION_ERROR';
 export const NOTIFICATION_SUCCESS = 'NOTIFICATION_SUCCESS';
 
 export const USER_MODELS = {
-    all: ['email', 'password', 'repeatPassword', 'name', 'phone', 'address', 'phone', 'business', 'professional'],
+    all: ['email', 'password', 'repeatPassword', 'name', 'phone', 'address', 'business', 'professional'],
     professional: {
         particular: ['dni', 'lastName', 'gender', 'birthdate', 'enrollment', 'workZone', 'workArea', 'experience'],
         business: ['cuit', 'enrollment', 'workZone', 'workArea', 'employees'],
