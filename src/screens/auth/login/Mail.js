@@ -12,8 +12,8 @@ const Mail = ({ navigation }) => {
   
     const handleChangeText = (name, value) => setUser({ ...user, [name]: value });
 
-    const logIn = async () => dispatch(login(user.email, user.password));
-    const register = async () => navigation.navigate('RegisterOptions');
+    const logIn = async () => user.email && user.password ? dispatch(login(user)) : alert('Completa todos los campos');
+    const register = async () => navigation.navigate('RegisterOptions', { user: {}});
     const forgot = async () => alert('forgot password');
   
     const touchableText = (text, onPress, size, color) => <TouchableOpacity onPress={onPress}><Text style={{fontSize: size, color}}>{text}</Text></TouchableOpacity>
@@ -31,7 +31,7 @@ const Mail = ({ navigation }) => {
                         {touchableText('Registrate', register, 16, RED)}
                     </View>
                 </View>
-                <Button text='Continuar' onPress={() => alert('continuar')} color={RED} />
+                <Button text='Continuar' onPress={logIn} color={RED} />
             </View>
         </SafeAreaView>
     )

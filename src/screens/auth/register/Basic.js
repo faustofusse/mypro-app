@@ -3,26 +3,32 @@ import { View, Text, StyleSheet, StatusBar, SafeAreaView } from 'react-native';
 import { BACKGROUND_DARK, BACKGROUND_LIGHT, RED } from '../../../constants/colors';
 import { Button, IconButton } from '../../../components/buttons';
 import { Input } from '../../../components/auth';
+import { checkEmail } from '../../../utils/user';
+import { useDispatch } from 'react-redux';
 
-const checkEmail = email => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+const emailExpression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const Basic = ({ navigation, route }) => {
-    const isClient = route.params.client;
+    const isClient = !route.params.user.professional;
     const TITLE = isClient ? 'Cliente' : 'Profesional';
     const BACKGROUND_COLOR = isClient ? BACKGROUND_LIGHT : BACKGROUND_DARK;
     const FONT_COLOR = isClient ? BACKGROUND_DARK : BACKGROUND_LIGHT;
 
-    const [user, setUser] = useState({ email: null, password: null, repeatPassword: null });
+    const dispatch = useDispatch();
+    const [user, setUser] = useState({ ...route.params.user, email: null, password: null, repeatPassword: null });
     const handleChangeText = (name, value) => setUser({ ...user, [name]: value });
     
     const input = (key, placeholder, label, type, keyboard='default', secure=false, style=styles.input, textColor=FONT_COLOR, ) => 
         <Input onChange={v => handleChangeText(key, v)} placeholder={placeholder} label={label} style={style} textColor={textColor} keyboard={keyboard} type={type} secure={secure}/>
 
     const next = () => {
-        // if (!user.email || !user.password || !user.repeatPassword) return alert('Completa todos los campos!');
-        // if (!checkEmail(user.email)) return alert('El correo no es valido.');
-        // if (user.password !== user.repeatPassword) return alert('Las contraseñas no coinciden.');
-        navigation.navigate('Extra', { user: {...user, professional: !isClient} });
+        if (!user.email || !user.password || !user.repeatPassword) return alert('Completa todos los campos!');
+        if (emailExpression.test(user.email) == false) return alert('El correo no es valido.');
+        if (user.password !== user.repeatPassword) return alert('Las contraseñas no coinciden.');
+        dispatch(checkEmail(user.email, res => {
+            if (res.exists) return alert('El correo electronico ya fue registrado!');
+            navigation.navigate('Extra', { user: user });
+        }));
     }
 
     return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { BLACK, GRAY } from '../../constants/colors'
 
-const Input = ({label, placeholder, onChange, secure=false, keyboard='default', type, style, textColor=BLACK}) => {
+const Input = ({label, placeholder, onChange, secure=false, keyboard='default', type, style, textColor=BLACK, value}) => {
     return (
         <View style={style}>
             <Text style={[styles.text, {color: textColor}]}>{label}</Text>
@@ -14,6 +14,7 @@ const Input = ({label, placeholder, onChange, secure=false, keyboard='default', 
                 placeholder={placeholder} 
                 autoCapitalize='none' 
                 onChangeText={onChange} 
+                defaultValue={value}
             />
         </View>
     )

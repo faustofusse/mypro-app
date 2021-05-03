@@ -4,8 +4,8 @@ import { DARK_GRAY, RED } from '../../constants/colors';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-export default function DatePicker({ onChange, textColor, style, label=null }) {
-    const [date, setDate] = useState(null);
+export default function DatePicker({ onChange, textColor, style, initialDate, label=null }) {
+    const [date, setDate] = useState(new Date(initialDate));
     const [showDatePicker, setShowDatePicker] = useState(false);
 
     const handleConfirmDate = (date) => {

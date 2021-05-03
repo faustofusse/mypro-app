@@ -1,14 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet, StatusBar, SafeAreaView, TouchableOpacity } from 'react-native';
-import IconButton from '../../../components/buttons/Icon';
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { BLACK, GRAY } from '../../../constants/colors';
-
-import Client from '../../../assets/images/client.svg';
-const client = () => <Client />;
+import IconButton from '../../../components/buttons/Icon';
 import Profesional from '../../../assets/images/professional.svg';
-const professional = () => <Profesional />;
+import Client from '../../../assets/images/client.svg';
 
-const Options = ({ navigation }) => {
+const Options = ({ navigation, route }) => {
+    const user = route.params.user ? route.params.user : {};
 
     const button = (title, icon, onPress) => (
         <TouchableOpacity onPress={onPress} style={styles.button}>
@@ -16,7 +14,9 @@ const Options = ({ navigation }) => {
             <Text style={styles.buttonText}>{title}</Text>
         </TouchableOpacity>
     );
-    
+
+    const next = (professional) => () => navigation.navigate(user.google || user.facebook ? 'Extra' : 'Basic', { user: { ...user, professional: professional} })
+
     return (
         <View style={styles.container}>
             <SafeAreaView style={styles.safeArea}>
@@ -24,8 +24,8 @@ const Options = ({ navigation }) => {
             </SafeAreaView>
             <Text style={{fontFamily: 'MavenProBold', fontSize: 30, marginBottom: 30}}>Tipo de cuenta:</Text>
             <View style={styles.buttons}>
-                {button('Cliente', client, () => navigation.navigate('Basic', { client:true }))}
-                {button('Profesional', professional, () => navigation.navigate('Basic', { client:false }))}
+                {button('Cliente', () => <Client />, next(false))}
+                {button('Profesional', () => <Profesional />, next(true))}
             </View>
         </View>
     )

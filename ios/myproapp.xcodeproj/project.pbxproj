@@ -18,6 +18,9 @@
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		C0CE3B01FD1949B6A6EF93C4 /* MavenProBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DCFD8D41AD048F097F31770 /* MavenProBold.ttf */; };
 		C1207A8865D94971AA905AE7 /* MavenProMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C18DC2DFB2449C2B20F444A /* MavenProMedium.ttf */; };
+		D0319E14264076DB0075412F /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0319E13264076DB0075412F /* libRNGoogleSignin.a */; };
+		D0319E16264076E90075412F /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0319E15264076E90075412F /* libFBSDKCoreKit.a */; };
+		D04D3D0F263DED9C00804B35 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04D3D0E263DED9C00804B35 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,10 @@
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = myproapp/SplashScreen.storyboard; sourceTree = "<group>"; };
 		B207DA42B9504A31BFF23C2E /* MavenProRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MavenProRegular.ttf; path = ../src/assets/fonts/MavenProRegular.ttf; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		D0319E13264076DB0075412F /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0319E15264076E90075412F /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libFBSDKCoreKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D04D3D0D263DED9B00804B35 /* myproapp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "myproapp-Bridging-Header.h"; sourceTree = "<group>"; };
+		D04D3D0E263DED9C00804B35 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -47,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0319E16264076E90075412F /* libFBSDKCoreKit.a in Frameworks */,
+				D0319E14264076DB0075412F /* libRNGoogleSignin.a in Frameworks */,
 				96905EF65AED1B983A6B3ABC /* libPods-myproapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +75,8 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
+				D04D3D0E263DED9C00804B35 /* File.swift */,
+				D04D3D0D263DED9B00804B35 /* myproapp-Bridging-Header.h */,
 			);
 			name = myproapp;
 			sourceTree = "<group>";
@@ -73,6 +84,8 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0319E15264076E90075412F /* libFBSDKCoreKit.a */,
+				D0319E13264076DB0075412F /* libRNGoogleSignin.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-myproapp.a */,
@@ -172,7 +185,7 @@
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -256,11 +269,13 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-myproapp/Pods-myproapp-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
@@ -296,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				D04D3D0F263DED9C00804B35 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +354,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.myproapp;
 				PRODUCT_NAME = myproapp;
+				SWIFT_OBJC_BRIDGING_HEADER = "myproapp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -362,6 +379,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.myproapp;
 				PRODUCT_NAME = myproapp;
+				SWIFT_OBJC_BRIDGING_HEADER = "myproapp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
