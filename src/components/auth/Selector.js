@@ -21,7 +21,7 @@ const Selector = ({label, onChange, items, placeholder, style, textColor=BLACK})
                     inputIOS: {...styles.input, color: textColor },
                     iconContainer: {justifyContent: 'center', height:'100%'},
                     placeholder: { padding: 0, color: DARK_GRAY, fontSize: 18, fontFamily: 'MavenProRegular'},
-                }} 
+                }}
             />
         </View>
     )

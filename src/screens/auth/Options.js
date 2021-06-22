@@ -1,12 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
-import { BLACK, GRAY } from '../../../constants/colors';
-import IconButton from '../../../components/buttons/Icon';
-import Profesional from '../../../assets/images/professional.svg';
-import Client from '../../../assets/images/client.svg';
+import { BLACK, GRAY } from '../../constants/colors';
+import IconButton from '../../components/buttons/Icon';
+import Profesional from '../../assets/images/professional.svg';
+import Client from '../../assets/images/client.svg';
 
 const Options = ({ navigation, route }) => {
-    const user = route.params.user ? route.params.user : {};
+    const user = route.params.user || {};
+    // const user = route.params.user ? route.params.user : {};
+    const skipBasic = user.google || user.facebook;
 
     const button = (title, icon, onPress) => (
         <TouchableOpacity onPress={onPress} style={styles.button}>
@@ -15,7 +17,8 @@ const Options = ({ navigation, route }) => {
         </TouchableOpacity>
     );
 
-    const next = (professional) => () => navigation.navigate(user.google || user.facebook ? 'Extra' : 'Basic', { user: { ...user, professional: professional} })
+    const next = (professional) => () => navigation.navigate(skipBasic ? 'Extra' : 'Basic', 
+        { user: { ...user, professional: professional }, title: skipBasic ? 'Completa tus datos' : professional ? 'Profesional' : 'Cliente' });
 
     return (
         <View style={styles.container}>
@@ -24,8 +27,8 @@ const Options = ({ navigation, route }) => {
             </SafeAreaView>
             <Text style={{fontFamily: 'MavenProBold', fontSize: 30, marginBottom: 30}}>Tipo de cuenta:</Text>
             <View style={styles.buttons}>
-                {button('Cliente', () => <Client />, next(false))}
-                {button('Profesional', () => <Profesional />, next(true))}
+                { button('Cliente', () => <Client />, next(false)) }
+                { button('Profesional', () => <Profesional />, next(true)) }
             </View>
         </View>
     )

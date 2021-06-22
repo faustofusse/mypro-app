@@ -19,7 +19,7 @@ const Start = (props) => {
             <Logo style={styles.logo} />
             <Text style={styles.slogan}>SOLUCIONES A TUS PROBLEMAS</Text>
             <Text style={styles.text}>Ingresar con</Text>
-            <Button icon={() => <Mail />} color={RED} text='Correo Electronico' onPress={()=>navigation.navigate('Mail')}/>
+            <Button icon={() => <Mail />} color={RED} text='Correo Electronico' onPress={() => navigation.navigate('Mail', { user: {}, background: GRAY})}/>
             <Button icon={() => <Facebook />} color={BLUE} text='Facebook' onPress={() => facebook(dispatch, navigation)}/>
             <Button icon={() => <Google />} color={BLACK} text='Google' onPress={() => google(dispatch, navigation)}/>
         </View>
