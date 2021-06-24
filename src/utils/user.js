@@ -54,16 +54,20 @@ export const google = async (dispatch, navigation) => GoogleSignin.signIn().then
     preLogin(user, dispatch, navigation);
 }).catch(error => console.log(error));
 
-export const getUser = (token) => call(METHOD_GET, `${API_URL}/users`, null, authHeaders(token), SET_USER);
+export const uploadImage = (fieldName, file, metadata, load, error, progress, abort, transfer, options, token) =>
+    uploadFile(`${API_URL}/images/user`, 'image', token, file, load, error, progress);
 
-export const register = (user, callback = null) => call(METHOD_POST, `${API_URL}/users/register`, user, null, SET_USER, callback);
+export const getUser = (token) =>
+    call(METHOD_GET, `${API_URL}/users`, null, authHeaders(token), SET_USER);
 
-export const checkEmail = (email, callback = null) => call(METHOD_GET, `${API_URL}/users/email/check`, email, null, null, callback);
+export const checkEmail = (email, callback = null) =>
+    call(METHOD_GET, `${API_URL}/users/email/check`, email, null, null, callback);
 
-export const uploadImage = (fieldName, file, metadata, load, error, progress, abort, transfer, options, token) => {
-    return uploadFile(`${API_URL}/images/user`, 'image', token, file, load, error, progress);
-}
+export const register = (user, callback = null) =>
+    call(METHOD_POST, `${API_URL}/users/register`, user, null, SET_USER, callback);
 
-export const verify = (token, password, repeatPassword, callback = null) => {
-    return call(METHOD_POST, `${API_URL}/users/verify`, { token, password, repeatPassword}, null, null, callback);
-}
+export const verify = (token, password, repeatPassword, callback = null) =>
+    call(METHOD_POST, `${API_URL}/users/verify`, { token, password, repeatPassword}, null, null, callback);
+
+export const forgot = (email, callback = null) => 
+    call(METHOD_POST, `${API_URL}/users/forgot`, { email }, null, null, callback);

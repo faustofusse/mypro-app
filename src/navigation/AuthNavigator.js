@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Basic, Extra, Mail, Options, Professional, Start } from '../screens/auth';
+import { Basic, Extra, Mail, Options, Professional, Start, Forgot } from '../screens/auth';
 import { TransitionPresets } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
@@ -18,6 +18,7 @@ const AuthNavigator = () => (
         <Stack.Screen options={options} name="Basic" component={Basic}/>
         <Stack.Screen options={options} name="Extra" component={Extra}/>
         <Stack.Screen options={options} name="Professional" component={Professional}/>
+        <Stack.Screen options={options} name="Forgot" component={Forgot}/>
     </Stack.Navigator>
 );
 

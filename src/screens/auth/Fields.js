@@ -2,16 +2,12 @@ import React, { useState, useRef } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { DatePicker, Input, PhoneInput, Selector, Switch } from '../../components/auth';
 import { BACKGROUND_DARK, BACKGROUND_LIGHT, RED } from '../../constants/colors';
-import { register, checkEmail, login } from '../../utils/user';
+import { register, checkEmail, login, forgot } from '../../utils/user';
 import { IconButton, Button } from '../../components/buttons';
 import { useDispatch } from 'react-redux';
 
 const emailExpression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-const incomplete = (fields, user) => {
-    console.log(fields);
-    console.log(user);
-    fields.some(v => !Object.keys(user).includes(v) || (Object.keys(user).includes(v) && (user[v] == null || user[v] == '')));
-}
+const incomplete = (fields, user) => fields.some( v => !Object.keys(user).includes(v) || user[v] === null || user[v] === '' );
 const getKeyboard = value => value == 'email' ? 'email-address' : ['dni', 'enrollment', 'experience', 'employees'].includes(value) ? 'number-pad' : 'default';
 
 const Fields = component => ({ route, navigation }) => {
@@ -30,6 +26,7 @@ const Fields = component => ({ route, navigation }) => {
     const filtered = user => Object.fromEntries( Object.entries(user).filter( ([key, val]) => fields.current.concat(previousFields()).includes(key) ) );
     const changeValue = (name, value) => setUser({ ...user, [name]: value });
     const check = callback => dispatch(checkEmail(user.email, callback));
+    const forgotPassword = callback => () => dispatch(forgot(user.email, callback));
     const validate = next => () => incomplete(fields.current, user) ? alert('Error: completa todos los campos') : next() ;
     const registerUser = () => dispatch(register(filtered(user), res => {
         console.log(JSON.stringify(res));
@@ -65,7 +62,7 @@ const Fields = component => ({ route, navigation }) => {
                     <IconButton iconName='arrow-back-ios' onPress={navigation.goBack} color={fontColor} style={styles.icon}/>
                     <Text style={[styles.title, {color: fontColor, display: !title ? 'none' : 'flex'}]}>{title}</Text>
                 </View>
-                { component({ user, styles, navigation, login: loginUser, register: registerUser, checkEmail: check, validate, input, selector, text, phone, switchBusiness, birthdate, button }) }
+                { component({ user, styles, navigation, forgot: forgotPassword, login: loginUser, register: registerUser, checkEmail: check, validate, input, selector, text, phone, switchBusiness, birthdate, button }) }
             </View>
         </SafeAreaView>
     )
